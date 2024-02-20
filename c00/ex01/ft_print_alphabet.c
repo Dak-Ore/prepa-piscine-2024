@@ -1,24 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putchar.c                                       :+:      :+:    :+:   */
+/*   ft_print_alphabet.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dak <dak@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/20 11:48:47 by dak               #+#    #+#             */
-/*   Updated: 2024/02/20 15:32:18 by dak              ###   ########.fr       */
+/*   Created: 2024/02/20 15:35:39 by dak               #+#    #+#             */
+/*   Updated: 2024/02/20 15:47:22 by dak              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <unistd.h>
 
-void	ft_putchar(char c)
+void	ft_print_alphabet(void)
 {
-	write(1, &c, 1);
+	write(1, "abcdefghijklmnopqrstuvwxyz", 26);
 }
 /*
 int		main(void)
 {
-	ft_putchar('a');
+	ft_print_alphabet();
 }
 */
