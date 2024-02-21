@@ -1,31 +1,47 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_is_negative.c                                   :+:      :+:    :+:   */
+/*   ft_print_comb.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dak <dak@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/20 15:53:09 by dak               #+#    #+#             */
-/*   Updated: 2024/02/21 11:25:48 by dak              ###   ########.fr       */
+/*   Created: 2024/02/21 11:04:03 by dak               #+#    #+#             */
+/*   Updated: 2024/02/21 11:41:54 by dak              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <unistd.h>
 
-void	ft_is_negative(int n)
+void	ft_print_comb(void)
 {
-	if (n < 0)
+	int	n_left;
+	int	n_mid;
+	int	n_right;
+
+	n_left = '0';
+	while (n_left <= '7')
 	{
-		write(1, 'N', 1);
-	}
-	else
-	{
-		write(1, 'P', 1);
+		n_mid = n_left + 1;
+		while (n_mid <= '8')
+		{
+			n_right = n_mid + 1;
+			while (n_right <= '9')
+			{
+				write(1, &n_left, 1);
+				write(1, &n_mid, 1);
+				write(1, &n_right, 1);
+				if (!(n_left == '7' && n_mid == '8' && n_right == '9'))
+					write(1, ", ", 2);
+				n_right++;
+			}
+			n_mid++;
+		}
+		n_left++;
 	}
 }
 /*
 int		main(void)
 {
-	ft_is_negative(5);
+	ft_print_comb();
 }
 */
