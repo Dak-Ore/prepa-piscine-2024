@@ -1,1 +1,1 @@
-git log -n 5| grep commit | cut -c8-47
+git log --pretty=format:%H -n 5
