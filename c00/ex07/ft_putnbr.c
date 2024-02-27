@@ -6,11 +6,17 @@
 /*   By: dak <dak@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/21 13:02:37 by dak               #+#    #+#             */
-/*   Updated: 2024/02/22 13:03:37 by dak              ###   ########.fr       */
+/*   Updated: 2024/02/27 17:59:36 by dak              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <unistd.h>
+
+void	ft_printchar(char c)
+{
+	write(1, &c, 1);
+}
+
 
 void	ft_putnbr(int nb)
 {
@@ -21,9 +27,11 @@ void	ft_putnbr(int nb)
 	res = nb;
 	if (res < 0)
 	{
-		write(1, "-", 1);
+		ft_printchar('-');
 		res = -res;
 	}
+	if (res == 0)
+		ft_printchar('0');
 	size = 0;
 	while (res != 0)
 	{
@@ -33,7 +41,7 @@ void	ft_putnbr(int nb)
 	}
 	while (size >= 0)
 	{
-		write(1, &tab[size], 1);
+		ft_printchar(tab[size]);
 		size--;
 	}
 }
@@ -41,6 +49,6 @@ void	ft_putnbr(int nb)
 /*
 int		main(void)
 {
-	ft_putnbr(-25532340);
+	ft_putnbr(2147483647);
 }
 */

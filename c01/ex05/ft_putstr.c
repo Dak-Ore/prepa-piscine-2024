@@ -1,41 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_print_comb.c                                    :+:      :+:    :+:   */
+/*   ft_putstr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dak <dak@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/21 11:04:03 by dak               #+#    #+#             */
-/*   Updated: 2024/02/27 17:26:28 by dak              ###   ########.fr       */
+/*   Created: 2024/02/27 19:24:46 by dak               #+#    #+#             */
+/*   Updated: 2024/02/27 19:50:27 by dak              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <unistd.h>
 
-void	ft_print_comb(void)
+void	ft_putchar(char c)
 {
-	int	n_left;
-	int	n_mid;
-	int	n_right;
+	write(1, &c, 1);
+}
 
-	n_left = '0';
-	while (n_left <= '7')
+void	ft_putstr(char *str)
+{
+	int	i;
+
+	i = 0;
+	while (str[i] != '\0')
 	{
-		n_mid = n_left + 1;
-		while (n_mid <= '8')
-		{
-			n_right = n_mid + 1;
-			while (n_right <= '9')
-			{
-				write(1, &n_left, 1);
-				write(1, &n_mid, 1);
-				write(1, &n_right, 1);
-				if (!(n_left == '7' && n_mid == '8' && n_right == '9'))
-					write(1, ", ", 2);
-				n_right++;
-			}
-			n_mid++;
-		}
-		n_left++;
+		ft_putchar(str[i]);
+		i++;
 	}
 }

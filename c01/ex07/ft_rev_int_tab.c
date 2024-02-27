@@ -1,31 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_is_negative.c                                   :+:      :+:    :+:   */
+/*   ft_rev_int_tab.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dak <dak@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/20 15:53:09 by dak               #+#    #+#             */
-/*   Updated: 2024/02/27 17:20:32 by dak              ###   ########.fr       */
+/*   Created: 2024/02/27 19:53:07 by dak               #+#    #+#             */
+/*   Updated: 2024/02/27 20:08:12 by dak              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <unistd.h>
+void	ft_rev_int_tab(int *tab, int size)
+{
+	int		i;
+	char	temp;
 
-void	ft_is_negative(int n)
-{
-	if (n < 0)
+	i = 0;
+	while (i < size / 2)
 	{
-		write(1, "N", 1);
-	}
-	else
-	{
-		write(1, "P", 1);
+		temp = tab[i];
+		tab[i] = tab[size - i - 1];
+		tab[size - i - 1] = temp;
+		i++;
 	}
 }
-/*
-int		main(void)
-{
-	ft_is_negative(5);
-}
-*/
