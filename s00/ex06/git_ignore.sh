@@ -1,1 +1,1 @@
-cat -e ~/prepa-piscine-2024/.gitignore
+git ls-files -io --exclude standard
