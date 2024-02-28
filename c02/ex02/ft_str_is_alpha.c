@@ -1,43 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putnbr.c                                        :+:      :+:    :+:   */
+/*   ft_str_is_alpha.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dak <dak@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/21 13:02:37 by dak               #+#    #+#             */
-/*   Updated: 2024/02/28 14:22:11 by dak              ###   ########.fr       */
+/*   Created: 2024/02/28 13:19:49 by dak               #+#    #+#             */
+/*   Updated: 2024/02/28 13:41:00 by dak              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <unistd.h>
-
-void	ft_putchar(char c)
+int	ft_is_letter(char c)
 {
-	write(1, &c, 1);
+	if ((c >= 'A' && c <= 'Z') || (c >= 'a' && c <= 'z'))
+		return (1);
+	return (0);
 }
 
-void	ft_putnbr(int nb)
+int	ft_str_is_alpha(char *str)
 {
-	long	res;
+	int	i;
 
-	res = nb;
-	if (res < 0)
+	i = 0;
+	while (str[i])
 	{
-		ft_putchar('-');
-		res = -res;
+		if (ft_is_letter(str[i]) == 0)
+			return (0);
+		i++;
 	}
-	if (res < 10)
-		ft_putchar('0' + res);
-	if (res > 9)
-	{
-		ft_putnbr(res / 10);
-		ft_putchar('0' + (res % 10));
-	}
+	return (1);
 }
-
-int		main(void)
-{
-	ft_putnbr(42);
-}
-*/
