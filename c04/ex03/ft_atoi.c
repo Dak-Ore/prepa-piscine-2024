@@ -6,14 +6,14 @@
 /*   By: dak <dak@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/09 13:00:26 by dak               #+#    #+#             */
-/*   Updated: 2024/03/09 14:41:34 by dak              ###   ########.fr       */
+/*   Updated: 2024/03/09 14:57:55 by dak              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 int	ft_atoi(char *str)
 {
-	int		isneg;
-	long	res;
+	int	isneg;
+	int	res;
 
 	isneg = 1;
 	res = 0;
@@ -24,10 +24,7 @@ int	ft_atoi(char *str)
 		if (*str == '-')
 			isneg = -isneg;
 		if (*str >= '0' && *str <= '9')
-		{
-			res *= 10;
-			res += *str - '0';
-		}
+			res = (res * 10) + (*str - '0');
 		str++;
 	}
 	if (isneg < 0)
