@@ -1,22 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putstr.c                                        :+:      :+:    :+:   */
+/*   ft_atoi.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dak <dak@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/03/08 14:29:27 by dak               #+#    #+#             */
-/*   Updated: 2024/03/09 12:16:16 by dak              ###   ########.fr       */
+/*   Created: 2024/03/09 13:00:26 by dak               #+#    #+#             */
+/*   Updated: 2024/03/09 14:41:34 by dak              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <unistd.h>
-
-void	ft_putstr(char *str)
+int	ft_atoi(char *str)
 {
-	while (*str)
+	int		isneg;
+	long	res;
+
+	isneg = 1;
+	res = 0;
+	while (((*str == ' ' || *str == '-' || *str == '\n' || *str == '\t'
+				|| *str == '\r' || *str == '\f' || *str == '+') && res == 0)
+		|| (*str >= '0' && *str <= '9'))
 	{
-		write(1, &*str, 1);
+		if (*str == '-')
+			isneg = -isneg;
+		if (*str >= '0' && *str <= '9')
+		{
+			res *= 10;
+			res += *str - '0';
+		}
 		str++;
 	}
+	if (isneg < 0)
+		res = -res;
+	return (res);
 }
