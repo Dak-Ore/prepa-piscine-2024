@@ -1,40 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_is_prime.c                                      :+:      :+:    :+:   */
+/*   ft_strdup.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dak <dak@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/03/10 17:57:43 by dak               #+#    #+#             */
-/*   Updated: 2024/03/10 19:47:00 by dak              ###   ########.fr       */
+/*   Created: 2024/03/11 17:09:24 by dak               #+#    #+#             */
+/*   Updated: 2024/03/11 17:55:13 by dak              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int	ft_sqrt(int nb)
+#include <stdlib.h>
+
+int	ft_strlen(char *str)
 {
 	int	i;
 
-	i = 1;
-	while ((i * i) < nb)
+	i = 0;
+	while (str[i])
 		i++;
 	return (i);
 }
 
-int	ft_is_prime(int nb)
+char	*ft_strdup(char *src)
 {
-	int	i;
-	int	sqrt;
+	int		i;
+	char	*str;
 
-	if (nb <= 1)
-		return (0);
-	i = 1;
-	sqrt = ft_sqrt(nb);
-	while (i <= sqrt)
+	i = 0;
+	str = malloc(sizeof(char) * ft_strlen(src) + 1);
+	while (src[i])
 	{
+		str[i] = src[i];
 		i++;
-		if (nb % i == 0 && i != nb)
-			return (0);
 	}
-	return (1);
+	str[i] = '\0';
+	return (str);
 }
-

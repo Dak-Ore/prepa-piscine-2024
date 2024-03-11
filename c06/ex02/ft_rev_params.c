@@ -1,40 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_is_prime.c                                      :+:      :+:    :+:   */
+/*   ft_rev_params.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dak <dak@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/03/10 17:57:43 by dak               #+#    #+#             */
-/*   Updated: 2024/03/10 19:47:00 by dak              ###   ########.fr       */
+/*   Created: 2024/03/10 19:47:17 by dak               #+#    #+#             */
+/*   Updated: 2024/03/10 21:17:57 by dak              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int	ft_sqrt(int nb)
+#include <unistd.h>
+
+int	main(int argc, char *argv[])
 {
-	int	i;
+	char	*param;
 
-	i = 1;
-	while ((i * i) < nb)
-		i++;
-	return (i);
-}
-
-int	ft_is_prime(int nb)
-{
-	int	i;
-	int	sqrt;
-
-	if (nb <= 1)
-		return (0);
-	i = 1;
-	sqrt = ft_sqrt(nb);
-	while (i <= sqrt)
+	if (argc < 2)
+		return (1);
+	while (argc - 1 > 0)
 	{
-		i++;
-		if (nb % i == 0 && i != nb)
-			return (0);
+		param = argv[argc - 1];
+		while (*param)
+		{
+			write(1, &*param, 1);
+			param++;
+		}
+		write(1, "\n", 1);
+		argc--;
 	}
-	return (1);
 }
-
