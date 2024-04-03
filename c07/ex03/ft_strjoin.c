@@ -6,12 +6,11 @@
 /*   By: dak <dak@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/12 21:12:08 by dak               #+#    #+#             */
-/*   Updated: 2024/03/19 16:54:50 by dak              ###   ########.fr       */
+/*   Updated: 2024/03/27 16:42:13 by dak              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
-#include <stdio.h>
 
 int	ft_strlen(char *str)
 {
@@ -37,7 +36,6 @@ int	ft_strlens(int size, char **strs, char *sep)
 			i += ft_strlen(sep);
 		nb++;
 	}
-
 	return (i);
 }
 
