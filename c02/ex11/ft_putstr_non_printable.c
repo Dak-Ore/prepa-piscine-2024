@@ -6,11 +6,11 @@
 /*   By: dak <dak@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/01 15:56:36 by dak               #+#    #+#             */
-/*   Updated: 2024/03/01 16:37:07 by dak              ###   ########.fr       */
+/*   Updated: 2024/04/05 22:38:06 by dak              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
- #include <unistd.h>
+#include <unistd.h>
 
 void	ft_putchar(char c)
 {
@@ -47,7 +47,7 @@ void	ft_print_char_to_hexa(char c)
 
 void	ft_putstr_non_printable(char *str)
 {
-	int        i;
+	int	i;
 
 	i = 0;
 	while (str[i] != '\0')
