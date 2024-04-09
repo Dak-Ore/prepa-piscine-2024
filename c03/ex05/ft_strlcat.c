@@ -1,25 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strlcpy.c                                       :+:      :+:    :+:   */
+/*   ft_strlcat.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dak <dak@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/03/01 15:51:45 by dak               #+#    #+#             */
-/*   Updated: 2024/04/08 18:41:39 by dak              ###   ########.fr       */
+/*   Created: 2024/04/07 00:03:04 by dak               #+#    #+#             */
+/*   Updated: 2024/04/07 00:22:50 by dak              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-unsigned int	ft_strlcpy(char *dest, char *src, unsigned int size)
+unsigned int	ft_strlcat(char *dest, char *src, unsigned int size)
 {
 	unsigned int	i;
 
 	i = 0;
-	while (i < size - 1 && src[i])
+	while (*dest != '\0' && i++ < size)
+		dest++;
+	while (*src != '\0' && i++ < size)
 	{
-		dest[i] = src[i];
-		i++;
+		*dest = *src;
+		src++;
+		dest++;
 	}
-	dest[i] = '\0';
+	*dest = '\0';
 	return (i);
 }

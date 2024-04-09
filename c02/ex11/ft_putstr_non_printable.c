@@ -6,7 +6,7 @@
 /*   By: dak <dak@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/01 15:56:36 by dak               #+#    #+#             */
-/*   Updated: 2024/04/05 22:38:06 by dak              ###   ########.fr       */
+/*   Updated: 2024/04/09 18:33:57 by dak              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,23 +26,21 @@ int	ft_char_is_printable(char c)
 	return (1);
 }
 
-void	ft_print_char_to_hexa(char c)
+void	ft_print_char_to_hexa(unsigned char c)
 {
-	char	*tab;
-	int		i;
-	int		first;
+	char	*base;
 
-	i = 0;
-	first = 0;
-	tab = "0123456789abcdef";
-	while (c > 16)
+	base = "0123456789abcdef";
+	if (c / 16 > 0)
 	{
-		first++;
-		c = c - 16;
+		ft_putchar(base[c / 16]);
+		ft_putchar(base[c % 16]);
 	}
-	ft_putchar(first + 48);
-	i = c;
-	ft_putchar(tab[i]);
+	else
+	{
+		ft_putchar('0');
+		ft_putchar(base[c]);
+	}
 }
 
 void	ft_putstr_non_printable(char *str)
@@ -57,7 +55,7 @@ void	ft_putstr_non_printable(char *str)
 			ft_putchar(92);
 			ft_print_char_to_hexa(str[i]);
 		}
-		else if (ft_char_is_printable(str[i]))
+		else
 		{
 			ft_putchar(str[i]);
 		}

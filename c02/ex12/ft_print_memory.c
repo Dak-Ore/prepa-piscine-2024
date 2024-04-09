@@ -6,7 +6,7 @@
 /*   By: dak <dak@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/03 21:10:08 by dak               #+#    #+#             */
-/*   Updated: 2024/04/06 18:12:11 by dak              ###   ########.fr       */
+/*   Updated: 2024/04/09 18:52:10 by dak              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	ft_putstr(char *str, int size)
 	int	i;
 
 	i = 0;
-	while (str[i] != '\0' && i < 16 && i < size)
+	while (i < 16 && i < size)
 	{
 		if (str[i] < ' ' || str[i] > '~')
 			write(1, ".", 1);
@@ -25,6 +25,7 @@ void	ft_putstr(char *str, int size)
 			write(1, &str[i], 1);
 		i++;
 	}
+	write(1, "\n", 1);
 }
 
 void	ft_print_addr(long addr)
@@ -51,13 +52,21 @@ void	ft_print_addr(long addr)
 	write(1, ": ", 2);
 }
 
-void	ft_print_char_to_hexa(char c)
+void	ft_print_char_to_hexa(unsigned char c)
 {
 	char	*tab;
 
 	tab = "0123456789abcdef";
-	write(1, &tab[c / 16], 1);
-	write(1, &tab[c % 16], 1);
+	if (c / 16 > 0)
+	{
+		write(1, &tab[c / 16], 1);
+		write(1, &tab[c % 16], 1);
+	}
+	else
+	{
+		write(1, "0", 1);
+		write(1, &tab[c], 1);
+	}
 }
 
 void	*ft_print_memory(void *addr, unsigned int size)
@@ -65,19 +74,26 @@ void	*ft_print_memory(void *addr, unsigned int size)
 	unsigned int	i;
 	char			*str;
 
-	i = 0;
-	str = addr;
-	ft_print_addr((long) addr);
-	while (i < size && i < 16)
+	if (size > 0)
 	{
-		ft_print_char_to_hexa(str[i]);
-		i++;
-		if (i % 2 == 0)
-			write(1, " ", 1);
+		i = 0;
+		str = addr;
+		ft_print_addr((long) addr);
+		while (i < size && i < 16)
+		{
+			ft_print_char_to_hexa(str[i]);
+			if (++i % 2 == 0)
+				write(1, " ", 1);
+		}
+		while (i < 16)
+		{
+			write(1, "  ", 2);
+			if (++i % 2 == 0)
+				write(1, " ", 1);
+		}
+		ft_putstr(str, size);
+		if (size >= 16)
+			ft_print_memory(&str[i], size - 16);
 	}
-	ft_putstr(str, size);
-	write(1, "\n", 1);
-	if (size > 16)
-		ft_print_memory(&str[i], size - 16);
 	return (addr);
 }
