@@ -6,7 +6,7 @@
 /*   By: dak <dak@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/09 13:00:26 by dak               #+#    #+#             */
-/*   Updated: 2024/03/20 20:14:11 by dak              ###   ########.fr       */
+/*   Updated: 2024/04/10 16:22:10 by dak              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,8 @@ int	base_len(char *base)
 	while (base[i])
 	{
 		j = i + 1;
-		if (base[i] == '+' || base[i] == '-' || base[i] == '\n'
-			|| base[i] == '\r' || base[i] == '\f' || base[i] == '+')
+		if (base[i] == '+' || base[i] == '-'
+			|| (base[i] >= '\t' && base[i] <= '\r'))
 			return (0);
 		while (base[j])
 		{
@@ -55,8 +55,12 @@ int	ft_atoi_base(char *str, char *base)
 	bsize = base_len(base);
 	isneg = 1;
 	res = 0;
-	while (((*str == ' ' || *str == '-' || *str == '\n' || *str == '\t'
-				|| *str == '\r' || *str == '\f' || *str == '+') && res == 0)
+	if (bsize == 0)
+		return (res);
+	while (*str == ' ')
+		str++;
+	while (((*str == '-' || (*str >= '\t' && *str <= '\r')
+				|| *str == '+') && res == 0)
 		|| (ft_pos_base(*str, base) != -1 && *str))
 	{
 		if (*str == '-')

@@ -6,7 +6,7 @@
 /*   By: dak <dak@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/21 13:02:37 by dak               #+#    #+#             */
-/*   Updated: 2024/03/09 16:07:03 by dak              ###   ########.fr       */
+/*   Updated: 2024/04/10 03:05:39 by dak              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,8 @@ int	base_len(char *base)
 	while (base[i])
 	{
 		j = i + 1;
-		if (base[i] == '+' || base[i] == '-')
+		if (base[i] == '+' || base[i] == '-'
+			|| (base[i] >= '\t' && base[i] <= '\r'))
 			return (0);
 		while (base[j])
 		{
@@ -58,5 +59,4 @@ void	ft_putnbr_base(int nb, char *base)
 			ft_putnbr_base(res / bsize, base);
 		ft_putchar(base[res % bsize]);
 	}
-
 }
