@@ -6,49 +6,99 @@
 /*   By: dak <dak@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/07 00:35:58 by dak               #+#    #+#             */
-/*   Updated: 2024/04/07 15:31:05 by dak              ###   ########.fr       */
+/*   Updated: 2024/06/10 22:13:19 by dak              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <unistd.h>
 
-int	ft_check_diago(int **board, int x, int y)
+void	ft_print_placements(int board[10][10])
+{
+	int		row;
+	int		col;
+	char	c;
+
+	row = -1;
+	while (++row <= 9)
+	{
+		col = -1;
+		while (++col <= 9)
+		{
+			if (board[row][col] == 1)
+			{
+				c = col + '0';
+				write(1, &c, 1);
+			}
+		}
+	}
+}
+
+void	ft_init_board(int board[10][10])
+{
+	int	row;
+	int	col;
+
+	row = -1;
+	while (++row <= 9)
+	{
+		col = -1;
+		while (++col <= 9)
+			board[row][col] = 0;
+	}
+}
+
+int	ft_can_place_queen(int board[10][10], int row, int col)
 {
 	int	i;
 
-	if (x > y)
-		i = 0 - y;
-	else
-		i = 0 - x;
-	while (x + i < 10 && y + i < 10)
+	if (col > 9)
+		return (0);
+	i = 1;
+	while (i <= row)
 	{
-		if (board[x + i][y + i] == 1 && i != 0)
+		if (board[row - i][col] == 1)
+			return (0);
+		if (col - i >= 0 && board[row - i][col - i] == 1)
+			return (0);
+		if (col + i <= 9 && board[row - i][col + i] == 1)
 			return (0);
 		i++;
 	}
 	return (1);
 }
 
-void	ft_create_board(int **board)
+int	ft_place_queens(int board[10][10], int row, int *nbposs)
 {
+	int	col;
 
+	if (row > 9)
+	{
+		ft_print_placements(board);
+		write(1, "\n", 1);
+		(*nbposs)++;
+		return (0);
+	}
+	col = -1;
+	while (++col <= 9)
+	{
+		if (ft_can_place_queen(board, row, col))
+		{
+			board[row][col] = 1;
+			if (ft_place_queens(board, row + 1, nbposs))
+				return (1);
+			board[row][col] = 0;
+		}
+	}
+	return (0);
 }
 
 int	ft_ten_queens_puzzle(void)
 {
 	int	board[10][10];
-	int	i;
-	int	j;
+	int	nbposs;
 
-	i = 0;
-	while (i < 10)
-	{
-		j = 0;
-		while (j < 10)
-		{
-			board[i][j] = 0;
-			j++;
-		}
-		i++;
-	}
+	nbposs = 0;
+	ft_init_board(board);
+	ft_place_queens(board, 0, &nbposs);
+	return (nbposs);
 }
